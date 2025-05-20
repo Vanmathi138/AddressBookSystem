@@ -1,17 +1,13 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program\n");
 
-        // use case 1
-        Contact contact = new Contact(
-                "John", "Doe", "123 Elm Street", "Springfield",
-                "Illinois", "62704", "1234567890", "john.doe@example.com"
-        );
-        System.out.println(contact);
-
         AddressBook addressBook = new AddressBook();
+        Map<String, AddressBook> addressBookSystem = new HashMap<>();
 
         Scanner scan = new Scanner(System.in);
 
@@ -19,12 +15,13 @@ public class AddressBookMain {
             System.out.println();
             System.out.println("****************************");
             System.out.println("Address Book System Use cases.....");
-            System.out.println("1. Add new Contact using console inputs ");
-            System.out.println("2. Display All contacts ");
-            System.out.println("3. Edit existing contact by their name using console ");
-            System.out.println("4. Delete a contact by their name using console ");
-            System.out.println("5. Add multiple contact to address book");
-            System.out.println("6. Exit");
+            System.out.println("1. Create new Contact in Address book");
+            System.out.println("2. Add new Contact using console inputs ");
+            System.out.println("3. Display All contacts ");
+            System.out.println("4. Edit existing contact by their name using console ");
+            System.out.println("5. Delete a contact by their name using console ");
+            System.out.println("6. Add multiple contact to address book");
+            System.out.println("7. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -33,21 +30,41 @@ public class AddressBookMain {
 
             switch (option) {
                 case 1:
-                    addContact(scan, addressBook);
+                    System.out.print("Enter new Address Book Name: ");
+                    String newBookName = scan.nextLine();
+                    if (addressBookSystem.containsKey(newBookName)) {
+                        System.out.println("Address Book already exists!");
+                    } else {
+                        addressBookSystem.put(newBookName, new AddressBook());
+                        System.out.println("Address Book created: " + newBookName);
+                    }
                     break;
                 case 2:
-                    addressBook.displayContacts();
+                    System.out.print("Enter Address Book Name to Add Contact: ");
+                    String bookName = scan.nextLine();
+                    AddressBook selectedBook = addressBookSystem.get(bookName);
+                    if (selectedBook != null) {
+                        addContact(scan, selectedBook);
+                    } else {
+                        System.out.println("Address Book not found!");
+                    }
                     break;
                 case 3:
-                    editExistingContact(scan, addressBook);
+                    for (String name : addressBookSystem.keySet()) {
+                        System.out.println("\nAddress Book: " + name);
+                        addressBookSystem.get(name).displayContacts();
+                    }
                     break;
                 case 4:
-                    deleteContact(scan,addressBook);
+                    editExistingContact(scan, addressBook);
                     break;
                 case 5:
-                    addMultipleContact(scan, addressBook);
+                    deleteContact(scan,addressBook);
                     break;
                 case 6:
+                    addMultipleContact(scan, addressBook);
+                    break;
+                case 7:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
