@@ -40,6 +40,9 @@ public class AddressBookMain {
                 case 3:
                     editExistingContact(scan, addressBook);
                     break;
+                case 4:
+                    deleteContact(scan,addressBook);
+                    break;
                 case 5:
                     System.out.println("Exiting.......");
                     scan.close();
@@ -49,9 +52,17 @@ public class AddressBookMain {
             }
         }
     }
-//use case 3
+//use case 4
+    private static void deleteContact(Scanner scan, AddressBook addressBook) {
+        System.out.print("Enter the first name to delete contact: ");
+        String name = scan.nextLine();
+
+        addressBook.deleteContact(name);
+    }
+
+    //use case 3
     private static void editExistingContact(Scanner scan, AddressBook addressBook) {
-        System.out.println("Enter first name to edit existing contact: ");
+        System.out.print("Enter first name to edit existing contact: ");
         String name = scan.nextLine();
 
         Contact contact =  addressBook.findContactByFirstName(name);
