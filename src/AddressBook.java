@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddressBook {
-    private ArrayList<Contact> contacts;
+    private List<Contact> contacts = new ArrayList<>();
 
     public AddressBook(){
         this.contacts = new ArrayList<>();
@@ -20,5 +21,17 @@ public class AddressBook {
         }else {
             System.out.println("Contact is empty");
         }
+    }
+
+    public Contact findContactByFirstName(String firstName) {
+        for (Contact contact : contacts) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                return contact;
+            }
+        }
+        return null;
+    }
+    public List<Contact> getContacts() {
+        return contacts;
     }
 }

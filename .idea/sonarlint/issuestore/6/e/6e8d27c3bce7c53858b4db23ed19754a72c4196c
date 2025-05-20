@@ -1,4 +1,6 @@
 
-‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ΪωÿÿÿÿJ$6ee3f676-0b9e-4bbe-9dfd-abcd10b5a61f
-’	java:S116"WRename this field "phone_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…―Λ‰J$cf92e157-1f09-4838-a384-c0454aa25335
-	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(χΝ‰ςωÿÿÿÿJ$981c2b25-0f00-4f8e-92ae-b09a77412cfe
+	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Ϊωÿÿÿÿ8—Οέγξ2J$049692cf-abdc-4da1-9b2a-ac222c97e14f
+	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªχύÿÿÿÿ8Ψµαγξ2J$2562d587-c186-4402-97fa-5ac290420225
+	java:S116"WRename this field "phone_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(άωÿÿÿÿ8§Οέγξ2J$c4f80c27-6333-4f07-8384-46e6b77479e0
+	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(χΝ‰ςωÿÿÿÿ8ΣΟέγξ2J$bdaba637-4899-4dbc-84aa-7db557653e24
+•	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªχύÿÿÿÿ8ϋαγξ2J$8adc7ea1-dd46-45c3-b706-720e26d65383
