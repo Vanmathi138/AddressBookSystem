@@ -19,11 +19,12 @@ public class AddressBookMain {
             System.out.println();
             System.out.println("****************************");
             System.out.println("Address Book System Use cases.....");
-            System.out.println("1. Add new Contact using console inputs: ");
-            System.out.println("2. Display All contacts: ");
-            System.out.println("3. Edit existing contact by their name using console: ");
-            System.out.println("4. Delete a contact by their name using console: ");
-            System.out.println("5. Exit");
+            System.out.println("1. Add new Contact using console inputs ");
+            System.out.println("2. Display All contacts ");
+            System.out.println("3. Edit existing contact by their name using console ");
+            System.out.println("4. Delete a contact by their name using console ");
+            System.out.println("5. Add multiple contact to address book");
+            System.out.println("6. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -44,6 +45,9 @@ public class AddressBookMain {
                     deleteContact(scan,addressBook);
                     break;
                 case 5:
+                    addMultipleContact(scan, addressBook);
+                    break;
+                case 6:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
@@ -52,7 +56,47 @@ public class AddressBookMain {
             }
         }
     }
-//use case 4
+//use case 5
+    private static void addMultipleContact(Scanner scanner, AddressBook addressBook) {
+        boolean addMore = true;
+
+        while (addMore){
+            System.out.println("\nEnter details for Contact");
+
+            System.out.print("First Name: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Last Name: ");
+            String lastName = scanner.nextLine();
+
+            System.out.print("Address: ");
+            String address = scanner.nextLine();
+
+            System.out.print("City: ");
+            String city = scanner.nextLine();
+
+            System.out.print("State: ");
+            String state = scanner.nextLine();
+
+            System.out.print("Zip: ");
+            String zip = scanner.nextLine();
+
+            System.out.print("Phone Number: ");
+            String phoneNumber = scanner.nextLine();
+
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+
+            Contact contact1 = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            addressBook.addContacts(contact1);
+
+            System.out.println("Do you want to add more? (Yes/No): ");
+            String choice = scanner.nextLine();
+            addMore = choice.equalsIgnoreCase("yes");
+        }
+    }
+
+    //use case 4
     private static void deleteContact(Scanner scan, AddressBook addressBook) {
         System.out.print("Enter the first name to delete contact: ");
         String name = scan.nextLine();
