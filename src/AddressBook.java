@@ -34,4 +34,14 @@ public class AddressBook {
     public List<Contact> getContacts() {
         return contacts;
     }
+
+    public void deleteContact(String firstName){
+        Contact contact = findContactByFirstName(firstName);
+        if(contact == null){
+            System.out.println("Contact not found with name: "+ firstName);
+        }else {
+            contacts.remove(contact);
+            System.out.println("Contact deleted successfully.");
+        }
+    }
 }
