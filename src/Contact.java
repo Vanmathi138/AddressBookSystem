@@ -1,15 +1,15 @@
 public class Contact{
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
-    private String state;
-    private int zipcode;
-    private String phone_number;
-    private String email;
+    private final String firstName;
+    private final String lastName;
+    private final String address;
+    private final String city;
+    private final String state;
+    private final String zipcode;
+    private final String phone_number;
+    private final String email;
 
     public Contact(String firstName, String lastName, String address, String city, String state,
-                   int zipcode, String phone_number, String email){
+                   String zipcode, String phone_number, String email){
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

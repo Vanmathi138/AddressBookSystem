@@ -1,4 +1,4 @@
 
-f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü³¡»
-q	java:S116"WRename this field "phone_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Üœùÿÿÿÿ
-[	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(÷Í‰òùÿÿÿÿ
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Ú˜ùÿÿÿÿJ$6ee3f676-0b9e-4bbe-9dfd-abcd10b5a61f
+’	java:S116"WRename this field "phone_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…¯Ë‰J$cf92e157-1f09-4838-a384-c0454aa25335
+	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(÷Í‰òùÿÿÿÿJ$981c2b25-0f00-4f8e-92ae-b09a77412cfe
