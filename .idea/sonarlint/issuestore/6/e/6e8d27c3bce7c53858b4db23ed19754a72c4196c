@@ -1,0 +1,4 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü³¡»
+q	java:S116"WRename this field "phone_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Üœùÿÿÿÿ
+[	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(÷Í‰òùÿÿÿÿ
