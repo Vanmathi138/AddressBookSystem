@@ -1,4 +1,4 @@
-public class Contact{
+public class Contact {
     private String firstName;
     private String lastName;
     private String address;
@@ -19,6 +19,8 @@ public class Contact{
         this.phone_number = phone_number;
         this.email = email;
     }
+
+    @Override
     public String toString() {
         return "Contact: \n" +
                 "firstName = " + firstName + "\n" +
@@ -31,32 +33,27 @@ public class Contact{
                 "email = " + email + "\n" ;
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Contact contact = (Contact) obj;
+        return firstName.equalsIgnoreCase(contact.firstName) &&
+                lastName.equalsIgnoreCase(contact.lastName);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public int hashCode() {
+        return (firstName.toLowerCase() + lastName.toLowerCase()).hashCode();
     }
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public void setCity(String city){
-        this.city=city;
-    }
-    public void setState(String state){
-        this.state=state;
-    }
-    public void setZipcode(String zipcode){
-        this.zipcode=zipcode;
-    }
-    public void setPhone_number(String phone_number){
-        this.phone_number=phone_number;
-    }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName){ this.lastName = lastName; }
+    public void setAddress(String address){ this.address = address; }
+    public void setEmail(String email){ this.email = email; }
+    public void setCity(String city){ this.city=city; }
+    public void setState(String state){ this.state=state; }
+    public void setZipcode(String zipcode){ this.zipcode=zipcode; }
+    public void setPhone_number(String phone_number){ this.phone_number=phone_number; }
 }

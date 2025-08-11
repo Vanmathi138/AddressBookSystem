@@ -7,10 +7,18 @@ public class AddressBook {
     public AddressBook(){
         this.contacts = new ArrayList<>();
     }
-    public void addContacts(Contact contact){
-        contacts.add(contact);
-        System.out.println("Contact added successfully");
+    public void addContacts(Contact contact) {
+        boolean exists = contacts.stream()
+                .anyMatch(c -> c.equals(contact)); // uses overridden equals
+
+        if (exists) {
+            System.out.println("Duplicate contact found! Cannot add.");
+        } else {
+            contacts.add(contact);
+            System.out.println("Contact added successfully");
+        }
     }
+
 
     public void displayContacts(){
         if(!contacts.isEmpty()){
