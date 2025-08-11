@@ -21,7 +21,8 @@ public class AddressBookMain {
             System.out.println("4. Edit existing contact by their name using console ");
             System.out.println("5. Delete a contact by their name using console ");
             System.out.println("6. Add multiple contact to address book");
-            System.out.println("7. Exit");
+            System.out.println("7. Search person in a City or State across Address Books");
+            System.out.println("8. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -65,6 +66,20 @@ public class AddressBookMain {
                     addMultipleContact(scan, addressBook);
                     break;
                 case 7:
+                    System.out.println("Search by:");
+                    System.out.println("1. City");
+                    System.out.println("2. State");
+                    int searchOption = scan.nextInt();
+                    scan.nextLine(); // consume newline
+                    if (searchOption == 1) {
+                        searchPersonByCityAcrossBooks(scan, addressBookSystem);
+                    } else if (searchOption == 2) {
+                        searchPersonByStateAcrossBooks(scan, addressBookSystem);
+                    } else {
+                        System.out.println("Invalid option");
+                    }
+                    break;
+                case 8:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
@@ -73,7 +88,28 @@ public class AddressBookMain {
             }
         }
     }
-//use case 5
+    //use case 8
+    private static void searchPersonByCityAcrossBooks(Scanner scan, Map<String, AddressBook> addressBookSystem) {
+        System.out.print("Enter City to search: ");
+        String city = scan.nextLine();
+
+        addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .forEach(System.out::println);
+    }
+
+    private static void searchPersonByStateAcrossBooks(Scanner scan, Map<String, AddressBook> addressBookSystem) {
+        System.out.print("Enter State to search: ");
+        String state = scan.nextLine();
+
+        addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .forEach(System.out::println);
+    }
+//
+    //use case 5
     private static void addMultipleContact(Scanner scanner, AddressBook addressBook) {
         boolean addMore = true;
 
