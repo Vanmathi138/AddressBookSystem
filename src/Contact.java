@@ -56,4 +56,11 @@ public class Contact {
     public void setState(String state){ this.state=state; }
     public void setZipcode(String zipcode){ this.zipcode=zipcode; }
     public void setPhone_number(String phone_number){ this.phone_number=phone_number; }
+
+    public String getState() {
+        return state;
+    }
+    public String getCity() {
+        return city;
+    }
 }
