@@ -25,7 +25,8 @@ public class AddressBookMain {
             System.out.println("6. Add multiple contact to address book");
             System.out.println("7. Search person in a City or State across Address Books");
             System.out.println("8. View persons grouped by City or State");
-            System.out.println("9. Exit");
+            System.out.println("9. Count persons by City or State");
+            System.out.println("10. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -96,8 +97,21 @@ public class AddressBookMain {
                         System.out.println("Invalid option");
                     }
                     break;
-
                 case 9:
+                    System.out.println("Count by:");
+                    System.out.println("1. City");
+                    System.out.println("2. State");
+                    int countOption = scan.nextInt();
+                    scan.nextLine(); // consume newline
+                    if (countOption == 1) {
+                        countPersonsByCityAcrossBooks(addressBookSystem);
+                    } else if (countOption == 2) {
+                        countPersonsByStateAcrossBooks(addressBookSystem);
+                    } else {
+                        System.out.println("Invalid option");
+                    }
+                    break;
+                case 10:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
@@ -106,7 +120,28 @@ public class AddressBookMain {
             }
         }
     }
-//use case 9
+    //use Case 10
+    private static void countPersonsByCityAcrossBooks(Map<String, AddressBook> addressBookSystem) {
+        Map<String, Long> cityCountMap = addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .collect(Collectors.groupingBy(Contact::getCity, Collectors.counting()));
+
+        System.out.println("\nCount of persons by City:");
+        cityCountMap.forEach((city, count) ->
+                System.out.println(city + " : " + count));
+    }
+
+    private static void countPersonsByStateAcrossBooks(Map<String, AddressBook> addressBookSystem) {
+        Map<String, Long> stateCountMap = addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .collect(Collectors.groupingBy(Contact::getState, Collectors.counting()));
+
+        System.out.println("\nCount of persons by State:");
+        stateCountMap.forEach((state, count) ->
+                System.out.println(state + " : " + count));
+    }
+
+    //use case 9
     private static void viewPersonsByCityAcrossBooks(Map<String, AddressBook> addressBookSystem) {
         Map<String, List<Contact>> cityMap = addressBookSystem.values().stream()
                 .flatMap(book -> book.getContacts().stream())
@@ -203,7 +238,6 @@ public class AddressBookMain {
     private static void editExistingContact(Scanner scan, AddressBook addressBook) {
         System.out.print("Enter first name to edit existing contact: ");
         String name = scan.nextLine();
-
         Contact contact =  addressBook.findContactByFirstName(name);
 
         if(contact == null){
