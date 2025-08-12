@@ -1,6 +1,8 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     public static void main(String[] args) {
@@ -22,7 +24,8 @@ public class AddressBookMain {
             System.out.println("5. Delete a contact by their name using console ");
             System.out.println("6. Add multiple contact to address book");
             System.out.println("7. Search person in a City or State across Address Books");
-            System.out.println("8. Exit");
+            System.out.println("8. View persons grouped by City or State");
+            System.out.println("9. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -80,6 +83,21 @@ public class AddressBookMain {
                     }
                     break;
                 case 8:
+                    System.out.println("View by:");
+                    System.out.println("1. City");
+                    System.out.println("2. State");
+                    int viewOption = scan.nextInt();
+                    scan.nextLine(); // consume newline
+                    if (viewOption == 1) {
+                        viewPersonsByCityAcrossBooks(addressBookSystem);
+                    } else if (viewOption == 2) {
+                        viewPersonsByStateAcrossBooks(addressBookSystem);
+                    } else {
+                        System.out.println("Invalid option");
+                    }
+                    break;
+
+                case 9:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
@@ -88,6 +106,30 @@ public class AddressBookMain {
             }
         }
     }
+//use case 9
+    private static void viewPersonsByCityAcrossBooks(Map<String, AddressBook> addressBookSystem) {
+        Map<String, List<Contact>> cityMap = addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .collect(Collectors.groupingBy(Contact::getCity));
+
+        cityMap.forEach((city, persons) -> {
+            System.out.println("\nCity: " + city);
+            persons.forEach(System.out::println);
+        });
+    }
+
+    private static void viewPersonsByStateAcrossBooks(Map<String, AddressBook> addressBookSystem) {
+        Map<String, List<Contact>> stateMap = addressBookSystem.values().stream()
+                .flatMap(book -> book.getContacts().stream())
+                .collect(Collectors.groupingBy(Contact::getState));
+
+        stateMap.forEach((state, persons) -> {
+            System.out.println("\nState: " + state);
+            persons.forEach(System.out::println);
+        });
+    }
+
+
     //use case 8
     private static void searchPersonByCityAcrossBooks(Scanner scan, Map<String, AddressBook> addressBookSystem) {
         System.out.print("Enter City to search: ");
