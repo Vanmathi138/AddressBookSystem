@@ -63,4 +63,8 @@ public class Contact {
     public String getCity() {
         return city;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

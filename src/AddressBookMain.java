@@ -26,7 +26,8 @@ public class AddressBookMain {
             System.out.println("7. Search person in a City or State across Address Books");
             System.out.println("8. View persons grouped by City or State");
             System.out.println("9. Count persons by City or State");
-            System.out.println("10. Exit");
+            System.out.println("10. Sort the entries in the address book alphabetically by Person’s name");
+            System.out.println("11. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -74,7 +75,7 @@ public class AddressBookMain {
                     System.out.println("1. City");
                     System.out.println("2. State");
                     int searchOption = scan.nextInt();
-                    scan.nextLine(); // consume newline
+                    scan.nextLine();
                     if (searchOption == 1) {
                         searchPersonByCityAcrossBooks(scan, addressBookSystem);
                     } else if (searchOption == 2) {
@@ -88,7 +89,7 @@ public class AddressBookMain {
                     System.out.println("1. City");
                     System.out.println("2. State");
                     int viewOption = scan.nextInt();
-                    scan.nextLine(); // consume newline
+                    scan.nextLine();
                     if (viewOption == 1) {
                         viewPersonsByCityAcrossBooks(addressBookSystem);
                     } else if (viewOption == 2) {
@@ -102,7 +103,7 @@ public class AddressBookMain {
                     System.out.println("1. City");
                     System.out.println("2. State");
                     int countOption = scan.nextInt();
-                    scan.nextLine(); // consume newline
+                    scan.nextLine();
                     if (countOption == 1) {
                         countPersonsByCityAcrossBooks(addressBookSystem);
                     } else if (countOption == 2) {
@@ -112,6 +113,16 @@ public class AddressBookMain {
                     }
                     break;
                 case 10:
+                    System.out.print("Enter Address Book Name to sort contacts: ");
+                    String sortBookName = scan.nextLine();
+                    AddressBook sortBook = addressBookSystem.get(sortBookName);
+                    if (sortBook != null) {
+                        sortBook.sortContactsByName();
+                    } else {
+                        System.out.println("Address Book not found!");
+                    }
+                    break;
+                case 11:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
@@ -120,6 +131,7 @@ public class AddressBookMain {
             }
         }
     }
+
     //use Case 10
     private static void countPersonsByCityAcrossBooks(Map<String, AddressBook> addressBookSystem) {
         Map<String, Long> cityCountMap = addressBookSystem.values().stream()
