@@ -75,5 +75,46 @@ public class AddressBook {
         System.out.println("\nContacts sorted by Name:");
         sortedList.forEach(System.out::println);
     }
+    public void sortContactsByCity() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts to sort.");
+            return;
+        }
+
+        List<Contact> sortedList = contacts.stream()
+                .sorted((c1, c2) -> c1.getCity().compareToIgnoreCase(c2.getCity()))
+                .toList();
+
+        System.out.println("\nContacts sorted by City:");
+        sortedList.forEach(System.out::println);
+    }
+
+    public void sortContactsByState() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts to sort.");
+            return;
+        }
+
+        List<Contact> sortedList = contacts.stream()
+                .sorted((c1, c2) -> c1.getState().compareToIgnoreCase(c2.getState()))
+                .toList();
+
+        System.out.println("\nContacts sorted by State:");
+        sortedList.forEach(System.out::println);
+    }
+
+    public void sortContactsByZip() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts to sort.");
+            return;
+        }
+
+        List<Contact> sortedList = contacts.stream()
+                .sorted((c1, c2) -> c1.getZipcode().compareToIgnoreCase(c2.getZipcode()))
+                .toList();
+
+        System.out.println("\nContacts sorted by Zip:");
+        sortedList.forEach(System.out::println);
+    }
 
 }

@@ -27,7 +27,8 @@ public class AddressBookMain {
             System.out.println("8. View persons grouped by City or State");
             System.out.println("9. Count persons by City or State");
             System.out.println("10. Sort the entries in the address book alphabetically by Person’s name");
-            System.out.println("11. Exit");
+            System.out.println("11. Sort person by City, State or Zip");
+            System.out.println("12. Exit");
             System.out.println("****************************");
             System.out.print("Enter option: ");
 
@@ -123,6 +124,25 @@ public class AddressBookMain {
                     }
                     break;
                 case 11:
+                    System.out.print("Enter Address Book Name to sort contacts: ");
+                    String sortBookName2 = scan.nextLine();
+                    AddressBook sortBook2 = addressBookSystem.get(sortBookName2);
+                    if (sortBook2 != null) {
+                        System.out.println("Sort by:\n1. City\n2. State\n3. Zip");
+                        int sortOption = scan.nextInt();
+                        scan.nextLine(); // consume newline
+                        switch (sortOption) {
+                            case 1 -> sortBook2.sortContactsByCity();
+                            case 2 -> sortBook2.sortContactsByState();
+                            case 3 -> sortBook2.sortContactsByZip();
+                            default -> System.out.println("Invalid option");
+                        }
+                    } else {
+                        System.out.println("Address Book not found!");
+                    }
+                    break;
+
+                case 12:
                     System.out.println("Exiting.......");
                     scan.close();
                     return;
