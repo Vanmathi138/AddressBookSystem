@@ -54,4 +54,26 @@ public class AddressBook {
             System.out.println("Contact deleted successfully.");
         }
     }
+
+    public void sortContactsByName() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts to sort.");
+            return;
+        }
+
+        List<Contact> sortedList = contacts.stream()
+                .sorted((c1, c2) -> {
+                    int firstNameCompare = c1.getFirstName().compareToIgnoreCase(c2.getFirstName());
+                    if (firstNameCompare != 0) {
+                        return firstNameCompare;
+                    } else {
+                        return c1.getLastName().compareToIgnoreCase(c2.getLastName());
+                    }
+                })
+                .toList();
+
+        System.out.println("\nContacts sorted by Name:");
+        sortedList.forEach(System.out::println);
+    }
+
 }
